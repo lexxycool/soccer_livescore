@@ -15,18 +15,21 @@ function HomeScreen() {
                 </div> 
                 <div className='title-box'>
                     <div className='team'>
-                        <img id='homeLogo' />
+                        <img id='homeLogo'alt='' />
                         <p id='homeName'>Team Name</p>
                     </div>
                     <p id='goals'>2 - 1</p>
                     <div className='team'>
-                        <img id='awayLogo' />
+                        <img id='awayLogo' alt='' />
                         <p id='awayName'>Team Name</p>
                     </div>
                 </div> 
                 <hr />
-                <div id='matchTable' className='matches-table'></div>              
+                <div id='matchTable' className='matches-table'>
+
+                </div>              
             </div>
+                <script src='main.js'></script>
         </div>
     )
 }
