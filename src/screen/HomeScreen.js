@@ -19,6 +19,50 @@ function HomeScreen() {
         var scoreLine = document.querySelector('#goals');
         var matchTable = document.querySelector('#matchTable');
 
+        // the functions to create an element
+        function addMatchTile(data) {
+
+            // creating the tile div
+            var matchtile = document.createElement('div');
+            matchtile.classList.add('match-tile');
+
+            // creating the home match box
+            var homeTeam = document.createElement('div');
+            homeTeam.classList.add('team');
+            // creating tthe image and the text
+            var homeTileTeamName = document.createElement('p');
+            homeTileTeamName.innerHTML = data['teams']['home']['name'];
+            var homeTileTeamLogo = document.createElement('img');
+            homeTileTeamLogo.src = data['teams']['home']['logo'];
+            homeTeam.appendChild(homeTileTeamLogo);
+            homeTeam.appendChild(homeTileTeamName);
+
+            // creating the away match box
+            var awayTeam = document.createElement('div');
+            awayTeam.classList.add('team');
+            // creating tthe image and the text
+            var awayTileTeamName = document.createElement('p');
+            awayTileTeamName.innerHTML = data['teams']['away']['name'];
+            var awayTileTeamLogo = document.createElement('img');
+            awayTileTeamLogo.src = data['teams']['away']['logo'];
+            awayTeam.appendChild(awayTileTeamLogo);
+            awayTeam.appendChild(awayTileTeamName);
+
+            // creating the score
+            var score = document.createElement('p');
+            score.innerHTML = data['goals']['home'] + "-" + data['goals']['away'];
+
+            // append all the element to the parent
+
+            matchtile.appendChild(homeTeam);
+            matchtile.appendChild(score);
+            matchtile.appendChild(awayTeam);
+
+            matchTable.appendChild(matchtile);
+
+
+        }
+
 
 
 
@@ -35,7 +79,7 @@ function HomeScreen() {
             .then(response => response.json()
                 .then(data => {
                     console.log(data);
-                    
+
                     var matchesList = data['response'];
                     var fixture =  matchesList[2]['fixture'];
                     var goals = matchesList[2]['goals'];
@@ -52,6 +96,10 @@ function HomeScreen() {
 
                     scoreLine.innerHTML = goals['home'] + "-" + goals['away'];
 
+                    for(var i = 1; i < 10; i++){
+                        addMatchTile(matchesList[i]);
+                    }
+                    
 
                 })
                 )
@@ -66,11 +114,11 @@ function HomeScreen() {
     return (
         <div className='main'>
             <div className='container'>
-                <h1>Score Board</h1>
+                <h1>livescore</h1>
                 <div className='title-box'>
-                    <p>Local Team</p>
+                    <p>home Team</p>
                     <p id='elapsed'>30'</p>
-                    <p>Visitor Team</p>
+                    <p>away Team</p>
                 </div> 
                 <div className='title-box'>
                     <div className='team'>
