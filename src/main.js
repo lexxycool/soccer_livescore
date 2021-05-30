@@ -9,15 +9,15 @@ function getData(){
 		"x-rapidapi-host": "api-football-v1.p.rapidapi.com"
 	}
 })
-.then(response => {
-	console.log(response);
-   
-})
-.catch(err => {
-	console.error(err);
-});
+.then(response => response.json()
+    .then(data =>{
+        console.log(response);
+    }))
+
 
 }
+
+getData();
 
 
 getData();
